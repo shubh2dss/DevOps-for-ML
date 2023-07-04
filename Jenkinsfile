@@ -19,15 +19,15 @@ pipeline {
                   
                   sh 'sudo docker build --tag ml_api .'
                   
-                  sh 'sudo docker tag ml_api shubh2dss/house_price_prediction_image:v0.${BUILD_NUMBER}'
-                  sh 'sudo docker push shubh2dss/house_price_prediction_image:v0.${BUILD_NUMBER}'
+                  sh 'sudo docker tag ml_api shubh2ds/house_price_prediction_image:v1.${BUILD_NUMBER}'
+                  sh 'sudo docker push shubh2ds/house_price_prediction_image:v1.${BUILD_NUMBER}'
                   
-                  sh 'scp ${WORKSPACE}/Dockerfile root@216.219.95.135:/home/workspace/house_price_prediction_api/'
-                  sh 'scp ${WORKSPACE}/requirements.txt root@216.219.95.135:/home/workspace/house_price_prediction_api/'
-                  sh 'scp ${WORKSPACE}/CI_and_CD/src/inference.py root@216.219.95.135:/home/workspace/house_price_prediction_api/src/'
+                  sh 'scp ${WORKSPACE}/Dockerfile root@216.219.95.135:/home/workspace/GIT-ML-ENDTOEND/shubh2dss-GIT/CICD-Testing/api/'
+                  sh 'scp ${WORKSPACE}/requirements.txt root@216.219.95.135:/home/workspace/GIT-ML-ENDTOEND/shubh2dss-GIT/CICD-Testing/api/'
+                  sh 'scp ${WORKSPACE}/CI_and_CD/src/inference.py root@216.219.95.135:/home/workspace/GIT-ML-ENDTOEND/shubh2dss-GIT/CICD-Testing/api/src/'
                     
-                  sh 'ssh root@216.219.95.135 sudo docker pull shubh2dss/house_price_prediction_image:v0.${BUILD_NUMBER}'
-                  sh 'ssh root@216.219.95.135 sudo docker run -d -p 5000:5000 -v ml_vol:/home/workspace/house_price_prediction/ shubh2dss/house_price_prediction_image:v0.${BUILD_NUMBER}'
+                  sh 'ssh root@216.219.95.135 sudo docker pull shubh2ds/house_price_prediction_image:v1.${BUILD_NUMBER}'
+                  sh 'ssh root@216.219.95.135 sudo docker run -d -p 5000:5000 -v ml_vol:/home/workspace/GIT-ML-ENDTOEND/shubh2dss-GIT/CICD-Testing/ shubh2ds/house_price_prediction_image:v1.${BUILD_NUMBER}'
 
             }
           
